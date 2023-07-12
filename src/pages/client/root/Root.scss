@@ -1,0 +1,22 @@
+.nav-bar {
+  background-color: #94bbe9;
+}
+
+.tab-bar {
+  display: flex;
+  padding: 10px;
+}
+
+.tab-item {
+  flex-shrink: 0;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab-item.active {
+  background-color: #ff9900;
+  color: #fff;
+}

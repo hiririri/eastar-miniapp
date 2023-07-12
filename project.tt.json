@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "eastar-miniapp",
+  "description": "This is a Wechat Miniprogramme.",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

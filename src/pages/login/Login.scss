@@ -1,0 +1,75 @@
+.nav-bar {
+  background-color: #94bbe9;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgb(149, 188, 233) 90%
+  );
+}
+
+.account {
+  margin: 20px;
+  border: 1px;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  height: 50px;
+}
+
+.account-text {
+  color: #3893ff;
+  font-weight: bold;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 100%;
+  background-color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.custom-input {
+  border-radius: 20px !important;
+  padding: 30px !important;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.loginButton {
+  position: relative;
+  margin-right: 40px;
+  border-radius: 20px !important;
+}
+
+.registerButton {
+  position: relative;
+  margin-left: 40px;
+  border-radius: 20px !important;
+}
+
+.loginButton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+}
