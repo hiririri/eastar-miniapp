@@ -1,40 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { View, GridView } from "@tarojs/components";
-import { AtSearchBar } from "taro-ui";
+import { AtSearchBar, AtTabs, AtTabsPane } from "taro-ui";
 import ProductCard from "../../../components/productCard/ProductCard";
 import Taro from "@tarojs/taro";
 import NavBar from "../../../components/navbar/NavBar";
+import { useSelector } from "react-redux";
 
 const ProductList = () => {
+  const systemInfo = useSelector((state) => state.systemInfo.systemInfo);
   const navBarHeight = Taro.getStorageSync("navBarHeight");
   const { title } = Taro.getCurrentInstance().router.params;
   const [value, setValue] = useState("");
   const [products, setProducts] = useState(productList); // 初始值为所有商品
+  const [currentTab, setCurrentTab] = useState(0);
 
   useEffect(() => {
     if (value.trim() === "") {
       setProducts(productList); // 如果搜索框为空，重置商品列表为所有商品
     } else {
-      const filteredProducts = productList.filter(
-        (product) => product.ref.toLowerCase().includes(value.toLowerCase())
+      const filteredProducts = productList.filter((product) =>
+        product.ref.toLowerCase().includes(value.toLowerCase())
       );
       setProducts(filteredProducts); // 如果搜索框不为空，更新商品列表为搜索结果
     }
   }, [value]);
 
-  const [searchBarHeight, setSearchBarHeight] = useState(0);
+  const [searchBarHeight, setSearchBarHeight] = useState(42);
+
+  useLayoutEffect(() => {
+    const query = Taro.createSelectorQuery();
+    query
+      .select(".searchBar")
+      .boundingClientRect((rect) => {
+        if (rect) {
+          setSearchBarHeight(rect.height);
+        }
+      })
+      .exec();
+  }, []);
 
   useEffect(() => {
     const query = Taro.createSelectorQuery();
     query
       .select(".searchBar")
-      .boundingClientRect((rect) => setSearchBarHeight(rect.height))
+      .boundingClientRect((rect) => {
+        if (rect) {
+          setSearchBarHeight(rect.height);
+        }
+      })
       .exec();
-  }, []);
+  }, [value]);
+
+  console.log("searchBarHeight : ", searchBarHeight);
+
+  const tabList = brandList.map((brand) => ({ title: brand.name }));
 
   return (
     <View>
-      <NavBar title={title} />
+      <NavBar systemInfo={systemInfo} title={title} />
 
       <View style={{ paddingTop: navBarHeight + "px" }}>
         <View
@@ -54,21 +77,54 @@ const ProductList = () => {
           />
         </View>
 
-        <View style={{ paddingTop: `${searchBarHeight}px` }}></View>
+        <View style={{ paddingTop: `${searchBarHeight}px` }} />
 
-        <View style={{ padding: "5px" }}>
-          <GridView type="masonry" mainAxisGap={10} crossAxisGap={10}>
-            {products.map((product) => (
-              <ProductCard product={product} isCartBarShow={false} />
-            ))}
-          </GridView>
-        </View>
+        <AtTabs
+          scroll
+          tabDirection="horizontal"
+          current={currentTab}
+          tabList={tabList}
+          onClick={(value) => setCurrentTab(value)}
+        >
+          {brandList.map((brand, index) => (
+            <AtTabsPane current={currentTab} index={index} key={brand.id}>
+              {currentTab === index && (
+                <View style={{ padding: "5px" }}>
+                  <GridView type="masonry" mainAxisGap={10} crossAxisGap={10}>
+                    {products.map((product) => (
+                      <ProductCard product={product} isCartBarShow={false} />
+                    ))}
+                  </GridView>
+                </View>
+              )}
+            </AtTabsPane>
+          ))}
+        </AtTabs>
       </View>
     </View>
   );
 };
 
 export default ProductList;
+
+const brandList = [
+  { id: 1, name: "Brand A" },
+  { id: 2, name: "Brand B" },
+  { id: 3, name: "Brand C" },
+  { id: 4, name: "Brand D" },
+  { id: 5, name: "Brand E" },
+  { id: 6, name: "Brand F" },
+  { id: 7, name: "Brand G" },
+  { id: 8, name: "Brand H" },
+  { id: 9, name: "Brand I" },
+  { id: 10, name: "Brand J" },
+  { id: 11, name: "Brand J" },
+  { id: 12, name: "Brand J" },
+  { id: 13, name: "Brand J" },
+  { id: 14, name: "Brand J" },
+  { id: 15, name: "Brand J" },
+  { id: 16, name: "Brand J" },
+];
 
 const productList = [
   {

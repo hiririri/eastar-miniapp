@@ -27,12 +27,18 @@ const Root = () => {
     }
   };
 
+  const getCurrentTabTitle = () => {
+    return tabList[currentTab].title;
+  };
+
   return (
     <View>
-      <NavBar title="Root" />
-      <View style={{ paddingTop: navBarHeight + "px" }}>
-        {renderContent()}
-      </View>
+      <NavBar
+        systemInfo={systemInfo}
+        title={getCurrentTabTitle()}
+        root={true}
+      />
+      <View style={{ paddingTop: navBarHeight + "px" }}>{renderContent()}</View>
       {/* Tab Bar */}
       <View
         id="tabBar"
@@ -52,7 +58,7 @@ const Root = () => {
             title: item.title,
             iconType: item.iconType,
           }))}
-          onClick={(value)=>setCurrentTab(value)}
+          onClick={(value) => setCurrentTab(value)}
           current={currentTab}
         />
       </View>

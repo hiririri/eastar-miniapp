@@ -22,6 +22,8 @@ const Product = () => {
     vendor: "",
     oldprice: "",
     price: "",
+    officePrice: "",
+    asiaPrice: "",
     imageUrl: "",
     min: 0,
     max: 0,
@@ -65,7 +67,7 @@ const Product = () => {
       const productInfo = Taro.getCurrentInstance().router.params.productInfo;
 
       const parsedProduct = JSON.parse(decodeURIComponent(productInfo));
-      const { id, title, image, vendor, oldprice, price, variants, ref } =
+      const { id, title, image, vendor, oldprice, price, variants, ref, officePrice, asiaPrice } =
         parsedProduct;
 
       setProduct({
@@ -77,6 +79,8 @@ const Product = () => {
         vendor: vendor,
         oldprice: oldprice,
         price: price,
+        officePrice: officePrice,
+        asiaPrice: asiaPrice,
       });
 
       setVariants(variants);
@@ -169,6 +173,7 @@ const Product = () => {
           setSelectedOptionIndex={setSelectedOptionIndex}
           setSelectedStock={setSelectedStock}
           setProduct={setProduct}
+          isCartBarShow={isCartBarShow}
         />
       </ScrollView>
       {/* Cart Bar */}

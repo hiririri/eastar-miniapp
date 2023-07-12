@@ -62,7 +62,12 @@ function User() {
           <AtListItem
             title="修改密码"
             arrow="right"
-            onClick={() => console.log("Go to Change Password Page")}
+            onClick={() => {
+              console.log("Go to Change Password Page");
+              Taro.navigateTo({
+                url: "/pages/client/changePassword/ChangePassword",
+              });
+          }}
           />
           <AtListItem
             title="退出登录"

@@ -1,11 +1,23 @@
 import { View } from "@tarojs/components";
-import React from "react";
+import React, { useEffect } from "react";
 import { AtNavBar } from "taro-ui";
 import Taro from "@tarojs/taro";
 import "./NavBar.scss";
 
 const NavBar = (props) => {
   const { systemInfo, title, root, setShow } = props;
+
+  useEffect(() => {
+    const query = Taro.createSelectorQuery();
+    query.select("#nav-bar").boundingClientRect(
+      (rect) => {
+        if (rect) {
+          Taro.setStorageSync("navBarHeight", rect.height);
+        }
+      }
+    ).exec();
+  }, []);
+
   return (
     <View
       id="nav-bar"

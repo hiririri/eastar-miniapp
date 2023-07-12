@@ -51,13 +51,14 @@ const brandList = [
 ];
 
 const StoreSearch = () => {
+  const title = Taro.getCurrentInstance().router.params.title;
   const systemInfo = useSelector((state) => state.systemInfo);
   const navBarHeight = Taro.getStorageSync("navBarHeight");
 
   return (
     <View>
       <View style={{ position: "relative" }}>
-        <NavBar title="门店寻货" />
+        <NavBar title={title} />
       </View>
 
       <View style={{ paddingTop: navBarHeight + "px" }}>

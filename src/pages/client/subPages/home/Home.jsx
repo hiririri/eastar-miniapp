@@ -79,14 +79,20 @@ function Home({ handleTabClick, handleTopTap }) {
             case 1:
               console.log("跳转到品牌店寻货");
               Taro.navigateTo({
-                url: "/pages/client/store-search/StoreSearch",
+                url: "/pages/client/product-list/ProductList?title=品牌店寻货",
               });
               break;
             case 2:
               console.log("跳转到实时新闻");
+              Taro.navigateTo({
+                url: "/pages/client/news/News",
+              });
               break;
             case 3:
               console.log("跳转到寻价");
+              Taro.navigateTo({
+                url: "/pages/client/product-list/ProductList?title=寻价",
+              });
               break;
             case 4: 
               // handleTabClick(1);

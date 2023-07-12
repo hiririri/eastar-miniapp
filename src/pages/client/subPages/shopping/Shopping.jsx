@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { View, Text, Map, Image, GridView } from "@tarojs/components";
+import { View, ScrollView, GridView } from "@tarojs/components";
 import { AtTabs, AtTabsPane, AtSearchBar } from "taro-ui";
 import { useSelector } from "react-redux";
 import "./Shopping.scss";
@@ -20,7 +20,8 @@ function Shopping({ shoppingCurrentTopTab = 0 }) {
   const [activeBrandId, setActiveBrandId] = useState(0);
 
   const [currentTopTab, setCurrentTopTab] = useState(shoppingCurrentTopTab);
-  const [searchBarHeight, setSearchBarHeight] = useState(46);
+  const [searchBarHeight, setSearchBarHeight] = useState(42);
+  const [tabsHeaderHeight, setTabsHeaderHeight] = useState(43);
 
   useEffect(() => {
     // 显示加载提示框
@@ -36,7 +37,7 @@ function Shopping({ shoppingCurrentTopTab = 0 }) {
     }, 500); // 这里模拟2秒的加载时间
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const query = Taro.createSelectorQuery();
     query
       .select(".searchBar")
@@ -46,7 +47,19 @@ function Shopping({ shoppingCurrentTopTab = 0 }) {
         }
       })
       .exec();
-  }, [searchBarHeight]);
+  }, []);
+
+  useEffect(() => {
+    const query = Taro.createSelectorQuery();
+    query
+      .select(".at-tabs__header")
+      .boundingClientRect((rect) => {
+        if (rect) {
+          setTabsHeaderHeight(rect.height);
+        }
+      })
+      .exec();
+  }, []);
 
   const [value, setValue] = useState("");
   const [products, setProducts] = useState(productList);
@@ -90,40 +103,42 @@ function Shopping({ shoppingCurrentTopTab = 0 }) {
   ];
   const tabList = brandList.map((brand) => ({ title: brand.name }));
 
+  console.log("searchBarHeight", searchBarHeight);
+  console.log("tabsHeaderHeight", tabsHeaderHeight);
+
   return (
     <View>
       {!isLoading && (
         <View>
-          <View>
-            <AtSearchBar
-              className="searchBar"
-              placeholder="请输入查询内容"
-              value={value}
-              onChange={(value) => setValue(value)}
-              onActionClick={() => console.log({ value })}
-            />
-          </View>
+          <AtSearchBar
+            className="searchBar"
+            placeholder="请输入查询内容"
+            value={value}
+            onChange={(value) => setValue(value)}
+            onActionClick={() => console.log({ value })}
+          />
           <AtTabs
             scroll
-            tabDirection="vertical"
+            tabDirection="horizontal"
             current={activeBrandId}
             tabList={tabList}
             onClick={handleBrandClick}
-            height={`calc(100vh - ${navBarHeight}px - ${tabBarHeight}px - ${searchBarHeight}px)`}
           >
             {brandList.map((brand, index) => (
-              <AtTabsPane
-                tabDirection="vertical"
-                current={activeBrandId}
-                index={index}
-                key={brand.id}
-              >
+              <AtTabsPane current={activeBrandId} index={index} key={brand.id}>
                 {activeBrandId === index && (
-                  <GridView type="masonry" mainAxisGap={10} crossAxisGap={10}>
-                    {products.map((product) => (
-                      <ProductCard product={product} isCartBarShow={true} />
-                    ))}
-                  </GridView>
+                  <ScrollView
+                    scrollY
+                    style={{
+                      height: `calc(100vh - ${navBarHeight}px - ${tabBarHeight}px - ${tabsHeaderHeight}px - ${searchBarHeight}px)`,
+                    }}
+                  >
+                    <GridView type="masonry" mainAxisGap={10} crossAxisGap={10}>
+                      {products.map((product) => (
+                        <ProductCard product={product} isCartBarShow={true} />
+                      ))}
+                    </GridView>
+                  </ScrollView>
                 )}
               </AtTabsPane>
             ))}

@@ -10,7 +10,12 @@ function ProductInfoCard(props) {
     setSelectedOptionIndex,
     setProduct,
     setSelectedStock,
+    isCartBarShow,
   } = props;
+
+  console.log("product: ", product);
+
+  const show = isCartBarShow === "true" ? true : false;
 
   const cardStyle = {
     border: "1px solid #ccc",
@@ -47,18 +52,34 @@ function ProductInfoCard(props) {
           <Text style={{ marginLeft: "6px" }}>{product.ref}</Text>
         </View>
 
-        <View style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
-          <Text
+        {show ? (
+          <View style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+            <Text
+              style={{
+                color: "#d3d3d3",
+                fontSize: 16,
+                textDecorationLine: "line-through",
+              }}
+            >
+              {product.oldprice}€
+            </Text>
+            <Text style={{ fontSize: 16 }}>{product.price}€</Text>
+          </View>
+        ) : (
+          <View
             style={{
-              color: "#d3d3d3",
-              fontSize: 16,
-              textDecorationLine: "line-through",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            {product.oldprice}€
-          </Text>
-          <Text style={{ fontSize: 16 }}>{product.price}€</Text>
-        </View>
+            <Text style={{ fontSize: 16 }}>
+              欧洲价格：{product.officePrice}€
+            </Text>
+            <Text style={{ fontSize: 16 }}>
+              亚洲价格：{product.asiaPrice}￥
+            </Text>
+          </View>
+        )}
 
         <View>
           <View style={{ marginTop: "20px" }}>

@@ -14,6 +14,7 @@ export default defineAppConfig({
     "pages/client/address/Address",
     "pages/client/changePassword/ChangePassword",
     "pages/client/order-list/OrderList",
+    "pages/client/news/News",
     "pages/business/root/Root",
   ],
   window: {
