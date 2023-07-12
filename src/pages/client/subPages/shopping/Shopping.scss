@@ -1,0 +1,20 @@
+.tabContainer .at-tabs__item {
+  justify-content: center;
+  width: 100px !important;
+  height: 50px !important;
+  text-align: center;
+}
+
+.tabContainer .at-tabs__item--active {
+  font-weight: bold;
+}
+
+.at-tabs__underline {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.map {
+  width: 100vw;
+  height: 100%;
+}

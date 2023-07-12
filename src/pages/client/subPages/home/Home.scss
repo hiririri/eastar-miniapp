@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.image-swiper {
+  width: calc(100% - 20px);  /* Adjust the margin as per your need */
+  height: 300px; 
+  margin: 10px;  /* Adjust the margin as per your need */
+  border-radius: 20px;  /* Adjust the border-radius as per your need */
+  overflow: hidden;  /* To ensure the images also get rounded corners */
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notice-bar{
+  margin: 10px;
+}
