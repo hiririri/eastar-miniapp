@@ -3,7 +3,7 @@ import { View } from "@tarojs/components";
 import { AtTabBar, AtNavBar, AtActivityIndicator } from "taro-ui";
 import { useEffect, useState, Suspense } from "react";
 import Home from "../subPages/home/Home";
-import Shopping from "../subPages/shopping/Shopping";
+import Cart from "../subPages/cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import "./Root.scss";
 import User from "../subPages/user/User";
@@ -15,7 +15,7 @@ import { getSystemInfo } from "../../utils/util";
 
 const tabList = [
   { title: "首页", iconType: "home" },
-  { title: "购买", iconType: "shopping-bag" },
+  { title: "购物车", iconType: "shopping-cart" },
   { title: "寻货消息", iconType: "bell" },
   { title: "我的", iconType: "user" },
 ];
@@ -95,7 +95,7 @@ function Root() {
         );
       case 1:
         // 购买操作
-        return <Shopping shoppingCurrentTopTab={shoppingCurrentTopTab} />;
+        return <Cart />;
       case 2:
         // 订单信息
         return <Message />;

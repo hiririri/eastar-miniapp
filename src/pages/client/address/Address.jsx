@@ -29,6 +29,57 @@ const Address = () => {
             margin: "10px",
           }}
         >
+          <Text>发货地址</Text>
+          <AtInput
+            disabled={!edit}
+            name="name"
+            title="收货人"
+            type="text"
+            placeholder="请输入收货人姓名"
+            value={name}
+            onChange={(value) => setName(value)}
+          />
+          <AtInput
+            disabled={!edit}
+            name="phone"
+            title="手机号码"
+            type="phone"
+            placeholder="请输入手机号码"
+            value={phone}
+            onChange={(value) => setPhone(value)}
+          />
+          <AtInput
+            disabled={!edit}
+            name="address"
+            title="所在地区"
+            type="text"
+            placeholder="请选择所在地区"
+            value={address}
+            onChange={(value) => setAddress(value)}
+          />
+          <AtTextarea
+            disabled={!edit}
+            count={true}
+            value={detailAddress}
+            onChange={(value) => setDetailAddress(value)}
+            maxLength={200}
+            placeholder="请输入详细地址"
+            placeholderStyle="background:#fff;width:100%;min-height:80px;padding:0 30rpx;"
+          />
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid #e5e5e5",
+            borderRadius: "15px",
+            padding: "5px",
+            margin: "10px",
+          }}
+        >
+          <Text>发票地址</Text>
           <AtInput
             disabled={!edit}
             name="name"

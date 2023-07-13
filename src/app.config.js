@@ -6,6 +6,7 @@ export default defineAppConfig({
     "pages/client/product/Product",
     "pages/client/register/Register",
     "pages/client/shop-cart/ShopCart",
+    "pages/client/shopping/Shopping",
     "pages/client/confirmOrder/ConfirmOrder",
     "pages/client/store-map/StoreMap",
     "pages/client/store/Store",

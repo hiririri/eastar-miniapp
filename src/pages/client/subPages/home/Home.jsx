@@ -75,6 +75,9 @@ function Home({ handleTabClick, handleTopTap }) {
           switch (index) {
             case 0:
               console.log("跳转到买手店");
+              Taro.navigateTo({
+                url: "/pages/client/shopping/Shopping",
+              });
               break;
             case 1:
               console.log("跳转到品牌店寻货");
