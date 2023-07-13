@@ -1,0 +1,31 @@
+.doc-header {
+  display: flex;
+  align-items: center;
+  padding: 60px;
+  height: 130px;
+  background: linear-gradient(
+    to right,
+    #fbf8f8,
+    #c9c5c5
+  ); /* You can adjust the colors as needed */
+
+  &__title {
+    position: relative;
+    height: 90px;
+    color: #333;
+    font-size: 40px;
+    font-weight: bold;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: inline-block;
+      width: 120px;
+      height: 10px;
+      border-radius: 1px;
+      background-color: #6190e8;
+    }
+  }
+}

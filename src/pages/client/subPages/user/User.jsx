@@ -116,12 +116,6 @@ function User() {
           />
           <AtListItem
             disabled={!isLogin}
-            title="我的收藏"
-            arrow="right"
-            onClick={() => console.log("Go to My Favorites Page")}
-          />
-          <AtListItem
-            disabled={!isLogin}
             title="我的地址"
             arrow="right"
             onClick={() => {
