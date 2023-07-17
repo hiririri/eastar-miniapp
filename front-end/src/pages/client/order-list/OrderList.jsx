@@ -83,7 +83,7 @@ const OrderList = () => {
 
   return (
     <View>
-      <NavBar title="我的订单" />
+      <NavBar systemInfo={systemInfo} title="我的订单" root={false} />
       <View style={{ paddingTop: navBarHeight + "px" }}>
         <AtTabs
           current={current}

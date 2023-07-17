@@ -84,7 +84,7 @@ function Shopping({ shoppingCurrentTopTab = 0 }) {
   };
 
   const brandList = [
-    { id: 1, name: "Brand A" },
+    { id: 1, name: "ALESSANDRA RICH" },
     { id: 2, name: "Brand B" },
     { id: 3, name: "Brand C" },
     { id: 4, name: "Brand D" },

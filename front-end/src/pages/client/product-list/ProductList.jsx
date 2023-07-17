@@ -6,6 +6,8 @@ import Taro from "@tarojs/taro";
 import NavBar from "../../../components/navbar/NavBar";
 import { useSelector } from "react-redux";
 
+let productList = [];
+
 const ProductList = () => {
   const systemInfo = useSelector((state) => state.systemInfo.systemInfo);
   const navBarHeight = Taro.getStorageSync("navBarHeight");
@@ -54,6 +56,121 @@ const ProductList = () => {
   console.log("searchBarHeight : ", searchBarHeight);
 
   const tabList = brandList.map((brand) => ({ title: brand.name }));
+
+  if (title === "品牌店寻货") {
+    productList = [
+      {
+        id: 1,
+        title: "POLKA DOT DRESS WITH ASYMMETRIC COLLAR",
+        ref: "FAB3334F3906",
+        image:
+          "https://catalog-resize-images.thedoublef.com/fc63b524e6eb113140bde869257ce483/900/900/FAB3334F3906_M_ALESS-1882.a.jpg",
+        vendor: "ALESSANDRA RICH",
+        officePrice: 1185,
+        asiaPrice: 10500,
+        variants: [
+          { size: "42", color: "淡粉色" },
+        ],
+      },
+      {
+        id: 2,
+        title: "VIOLET PRINT JACQUARD PLEATED MINI DRESS",
+        ref: "FAB3271F3779",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3271F37791623YELLOW_a_720x.jpg?v=1668180770",
+        vendor: "ALESSANDRA RICH",
+        officePrice: 1299,
+        asiaPrice: 11500,
+        variants: [
+          { size: "42", color: "黄色", stock: 1 },
+        ],
+      },
+      {
+        id: 3,
+        title: "POLKA DOT SLEEVELESS DRESS DRAPED NECK",
+        ref: "FAB3341F3906",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3341F39061758BROWN-BLACK_a_720x.jpg?v=1673533823",
+          vendor: "ALESSANDRA RICH",
+        officePrice: 935,
+        asiaPrice: 8250,
+        variants: [
+          { size: "42", color: "棕色" },
+        ],
+      },
+      {
+        id: 4,
+        title: "FLAME KNITTED LONG CARDIGAN",
+        ref: "FAB3302F392",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3264K38479122PINK-LILAC_a_720x.jpg?v=1668102384",
+          vendor: "ALESSANDRA RICH",
+        officePrice: 695,
+        asiaPrice: 6150,
+        variants: [
+          { size: "40", color: "粉色" },
+        ],
+      },
+    ];
+  } else {
+    productList = [
+      {
+        id: 1,
+        title: "GABARDINE TOP",
+        ref: "FAB3154F3853",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3154F38531795GREEN_a_720x.jpg?v=1668103033",
+        vendor: "ALESSANDRA RICH",
+        officePrice: 380,
+        asiaPrice: 3350,
+        variants: [
+          { size: "42", color: "绿色" },
+        ],
+      },
+      {
+        id: 2,
+        title: "LUREX LACE KNIT TOP",
+        ref: "FAB3246K3839",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3246K38395244PINK_a_720x.jpg?v=1668175672",
+        vendor: "ALESSANDRA RICH",
+        officePrice: 290,
+        asiaPrice: 2600,
+        variants: [
+          { size: "40", color: "粉色", stock: 1 },
+          { size: "42", color: "粉色", stock: 1 },
+        ],
+      },
+      {
+        id: 3,
+        title: "LUREX LACE KNIT FLARED MIDI SKIRT",
+        ref: "FAB3341F3906",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3249K38395244PINK_f_720x1080.jpg?v=1668175321",
+          vendor: "ALESSANDRA RICH",
+        officePrice: 330,
+        asiaPrice: 2950,
+        variants: [
+          { size: "40", color: "粉色", stock: 1 },
+          { size: "42", color: "粉色", stock: 1 },
+        ],
+      },
+      {
+        id: 4,
+        title: "GABARDINE CARGO PANTS",
+        ref: "FAB3157F3853",
+        image:
+          "https://alessandrarich.com/cdn/shop/products/FAB3157F38531795GREEN_acopy_720x.jpg?v=1668102807",
+          vendor: "ALESSANDRA RICH",
+        officePrice: 530,
+        asiaPrice: 4700,
+        variants: [
+          { size: "27", color: "绿色" },
+          { size: "29", color: "绿色" },
+        ],
+      },
+    ];
+  }
 
   return (
     <View>
@@ -108,7 +225,7 @@ const ProductList = () => {
 export default ProductList;
 
 const brandList = [
-  { id: 1, name: "Brand A" },
+  { id: 1, name: "ALESSANDRA RICH" },
   { id: 2, name: "Brand B" },
   { id: 3, name: "Brand C" },
   { id: 4, name: "Brand D" },
@@ -126,57 +243,4 @@ const brandList = [
   { id: 16, name: "Brand J" },
 ];
 
-const productList = [
-  {
-    id: 1,
-    title: "POLKA DOT DRESS WITH ASYMMETRIC COLLAR",
-    ref: "FAB3334F3906",
-    image:
-      "https://catalog-resize-images.thedoublef.com/fc63b524e6eb113140bde869257ce483/900/900/FAB3334F3906_M_ALESS-1882.a.jpg",
-    vendor: "ALESSANDRA RICH",
-    officePrice: 1185,
-    asiaPrice: 10500,
-    variants: [
-      { size: "42", color: "淡粉色" },
-    ],
-  },
-  {
-    id: 2,
-    title: "VIOLET PRINT JACQUARD PLEATED MINI DRESS",
-    ref: "FAB3271F3779",
-    image:
-      "https://alessandrarich.com/cdn/shop/products/FAB3271F37791623YELLOW_a_720x.jpg?v=1668180770",
-    vendor: "ALESSANDRA RICH",
-    officePrice: 1299,
-    asiaPrice: 11500,
-    variants: [
-      { size: "42", color: "黄色", stock: 1 },
-    ],
-  },
-  {
-    id: 3,
-    title: "POLKA DOT SLEEVELESS DRESS DRAPED NECK",
-    ref: "FAB3341F3906",
-    image:
-      "https://alessandrarich.com/cdn/shop/products/FAB3341F39061758BROWN-BLACK_a_720x.jpg?v=1673533823",
-      vendor: "ALESSANDRA RICH",
-    officePrice: 935,
-    asiaPrice: 8250,
-    variants: [
-      { size: "42", color: "棕色" },
-    ],
-  },
-  {
-    id: 4,
-    title: "FLAME KNITTED LONG CARDIGAN",
-    ref: "FAB3302F392",
-    image:
-      "https://alessandrarich.com/cdn/shop/products/FAB3264K38479122PINK-LILAC_a_720x.jpg?v=1668102384",
-      vendor: "ALESSANDRA RICH",
-    officePrice: 695,
-    asiaPrice: 6150,
-    variants: [
-      { size: "40", color: "粉色" },
-    ],
-  },
-];
+
