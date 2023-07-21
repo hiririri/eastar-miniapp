@@ -358,4 +358,4 @@ const StoreMap = () => {
   );
 };
 
-export default StoreMap;
+export default Auth(StoreMap);

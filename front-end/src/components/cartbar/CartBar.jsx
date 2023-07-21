@@ -1,6 +1,7 @@
 import Taro from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtButton, AtInputNumber, AtBadge, AtFab } from "taro-ui";
+import { useSelector } from "react-redux";
 
 const CartBar = (props) => {
   const {
@@ -17,6 +18,7 @@ const CartBar = (props) => {
 
   console.log("isCartBarShow : ", isCartBarShow);
   const show = isCartBarShow === "true" ? true : false;
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   return (
     <View
@@ -95,7 +97,11 @@ const CartBar = (props) => {
           }}
         >
           <AtButton type="primary" circle onClick={()=>{
-            console.log("联系商家寻货");
+            if (isLogin) {
+              console.log("联系商家寻货");
+            } else {
+              Taro.redirectTo({ url: "/pages/login/Login" });
+            }
           }}>
             联系商家寻货
           </AtButton>

@@ -2,9 +2,11 @@ import Taro from "@tarojs/taro";
 import React from "react";
 import { View, Text } from "@tarojs/components";
 import { Image } from "@tarojs/components";
+import { useSelector } from "react-redux";
 
 const ProductCard = (props) => {
   const { product, isCartBarShow } = props;
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   return (
     <View
@@ -57,7 +59,7 @@ const ProductCard = (props) => {
         <Text style={{ wordWrap: "break-word" }}>{product.ref}</Text>
         <Text>{product.vendor}</Text>
 
-        {isCartBarShow ? (
+        {isCartBarShow && isLogin && (
           <View
             style={{
               display: "flex",
@@ -75,17 +77,24 @@ const ProductCard = (props) => {
             </Text>
             <Text style={{ fontSize: 16 }}>{product.price}€</Text>
           </View>
-        ) : (
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>欧洲价格：{product.officePrice}€</Text>
-            <Text style={{ fontSize: 16 }}>亚洲价格：{product.asiaPrice}￥</Text>
-          </View>
         )}
+
+        {!isCartBarShow &&
+          isLogin && (
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Text style={{ fontSize: 16 }}>
+                欧洲价格：{product.officePrice}€
+              </Text>
+              <Text style={{ fontSize: 16 }}>
+                亚洲价格：{product.asiaPrice}￥
+              </Text>
+            </View>
+          )}
       </View>
     </View>
   );

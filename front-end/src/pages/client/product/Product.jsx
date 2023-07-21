@@ -7,11 +7,13 @@ import "./Product.scss";
 import CartBar from "../../../components/cartbar/CartBar";
 import ProductInfoCard from "../../../components/productInfoCard/ProductInfoCard";
 import NavBar from "../../../components/navbar/NavBar";
+import Auth from "../../auth/Auth";
 
 const Product = () => {
   const systemInfo = useSelector((state) => state.systemInfo.systemInfo);
   const [isLoading, setIsLoading] = useState(true);
   const isCartBarShow = Taro.getCurrentInstance().router.params.isCartBarShow;
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   const [product, setProduct] = useState({
     id: "",
@@ -90,24 +92,31 @@ const Product = () => {
   }, []);
 
   async function addProductToCart() {
-    try {
-      const storageInfo = await Taro.getStorageInfo();
-
-      let cart;
-      if (storageInfo.keys.indexOf("cart") !== -1) {
-        const res = await Taro.getStorage({ key: "cart" });
-        cart = res.data;
-      } else {
-        cart = [];
+    if (isLogin) {
+      try {
+        const storageInfo = await Taro.getStorageInfo();
+  
+        let cart;
+        if (storageInfo.keys.indexOf("cart") !== -1) {
+          const res = await Taro.getStorage({ key: "cart" });
+          cart = res.data;
+        } else {
+          cart = [];
+        }
+  
+        cart.push(product);
+        await Taro.setStorage({ key: "cart", data: cart });
+      } catch (error) {
+        console.log(error);
       }
-
-      cart.push(product);
-      await Taro.setStorage({ key: "cart", data: cart });
-    } catch (error) {
-      console.log(error);
+  
+      setCartAdded(true);
+    } else {
+      Taro.redirectTo({
+        url: "/pages/login/Login",
+      });
     }
-
-    setCartAdded(true);
+    
   }
 
   const handleQuantityChange = (value) => {
@@ -192,4 +201,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Auth(Product);

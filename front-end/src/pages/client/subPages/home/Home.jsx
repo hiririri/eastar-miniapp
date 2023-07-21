@@ -107,6 +107,9 @@ function Home({ handleTabClick, handleTopTap }) {
               break;
             case 5:
               console.log("跳转到帮助");
+              Taro.navigateTo({
+                url: "/pages/client/help/Help",
+              });
               break;
             default:
               break;

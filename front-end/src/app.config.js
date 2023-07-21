@@ -17,6 +17,7 @@ export default defineAppConfig({
     "pages/client/order-list/OrderList",
     "pages/client/news/News",
     "pages/client/news-detail/NewsDetail",
+    "pages/client/help/Help",
     "pages/business/root/Root",
   ],
   window: {

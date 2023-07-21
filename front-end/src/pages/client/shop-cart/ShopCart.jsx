@@ -278,7 +278,7 @@ function ShopCart() {
             circle
             onClick={() => {
               console.log("add to cart");
-              Taro.navigateTo({
+              Taro.redirectTo({
                 url: "/pages/client/confirmOrder/ConfirmOrder",
               });
             }}

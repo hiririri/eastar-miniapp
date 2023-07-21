@@ -116,7 +116,7 @@ const OrderList = () => {
                           0
                         );
                         return (
-                          <View key={order.id} style={{ marginBottom: "10px" }}>
+                          <View key={order.id} style={{ margin: "10px" }}>
                             <AtCard
                               title={"订单号：" + order.id}
                               note={"总价：" + totalPrice}

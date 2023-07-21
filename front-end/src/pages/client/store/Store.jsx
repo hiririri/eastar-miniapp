@@ -2,7 +2,7 @@ import Taro from "@tarojs/taro";
 import { View, Text, Image, ScrollView } from "@tarojs/components";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { AtNavBar, AtCard } from "taro-ui";
+import { AtButton } from "taro-ui";
 import "./Store.scss";
 import NavBar from "../../../components/navbar/NavBar";
 
@@ -11,10 +11,10 @@ const Store = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [addToNavBarHeight, setAddToNavBarHeight] = useState(0);
 
-  const storeInfo  = Taro.getCurrentInstance().router.params.storeInfo;
+  const storeInfo = Taro.getCurrentInstance().router.params.storeInfo;
   const store = JSON.parse(decodeURIComponent(storeInfo));
 
-  console.log("store : ", store);
+  console.log("store : ", store.title);
 
   useEffect(() => {
     Taro.showLoading({
@@ -68,6 +68,31 @@ const Store = () => {
                 <Text className="store-info-item-text">联系电话</Text>
                 <Text className="store-info-item-value">{store.phone}</Text>
               </View>
+            </View>
+            <View
+              style={{
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                paddingBottom:
+                  systemInfo.screenHeight - systemInfo.safeArea.bottom + "px",
+                zIndex: 1,
+                paddingLeft: "10px",
+                paddingRight: "10px",
+              }}
+            >
+              <AtButton
+                type="primary"
+                circle
+                onClick={() => {
+                  Taro.navigateTo({
+                    url: `/pages/client/product-list/ProductList?title=品牌店寻货&store=${store.title}`,
+                  });
+                }}
+              >
+                去寻货
+              </AtButton>
             </View>
           </View>
         )}

@@ -29,7 +29,7 @@ const Address = () => {
             margin: "10px",
           }}
         >
-          <Text>发货地址</Text>
+          <Text>收货地址</Text>
           <AtInput
             disabled={!edit}
             name="name"

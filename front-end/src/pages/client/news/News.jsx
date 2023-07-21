@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import DocsHeader from "../../../components/docsHeader/DocsHeader";
 import "./News.scss";
 import { AtIcon } from "taro-ui";
+import Auth from "../../auth/Auth";
 
 const list = [
   {
@@ -130,4 +131,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Auth(News);

@@ -84,7 +84,7 @@ const ConfirmOrder = () => {
 
   return (
     <View>
-      <NavBar title="确认订单" />
+      <NavBar systemInfo={systemInfo} title="确认订单" root={false} />
       <View
         style={{
           paddingTop: navBarHeight + "px",
@@ -100,10 +100,17 @@ const ConfirmOrder = () => {
           {/* 地址 */}
           <View
             style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              border: "1px solid #e5e5e5",
+              borderRadius: "15px",
+              padding: "5px",
               margin: "10px",
             }}
           >
-            <AtList hasBorder={false} className="list">
+            <View className="at-article__p">地址：Pl. de l'Opéra, 75009 Paris</View>
+            {/* <AtList hasBorder={false} className="list">
               <AtListItem
                 arrow="right"
                 note="描述信息"
@@ -115,7 +122,7 @@ const ConfirmOrder = () => {
                   });
                 }}
               />
-            </AtList>
+            </AtList> */}
           </View>
           {/* 支付方式 */}
           <View
@@ -204,6 +211,11 @@ const ConfirmOrder = () => {
             onClick={() => {
               console.log("checkout");
               createOrder(cart);
+
+              // 跳转到支付页面
+
+              // 关闭当前页面，回到商品页面
+              Taro.navigateBack();
             }}
           >
             去支付
